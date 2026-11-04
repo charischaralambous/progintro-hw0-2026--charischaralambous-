@@ -1,14 +1,7 @@
 /*
- * goldbach.c - primality test and Goldbach check.
- *
- * Reads repeatedly an integer n (0 <= n <= 10^10) and a choice character:
- *   'p' -> tells whether n is prime
- *   'g' -> prints n = p + q with p <= q both prime, p as small as possible
- *
- * Numbers go up to 10^10, which does not fit in a 32-bit int (we compile
- * with -m32), so "long long" (64-bit, C99) is used everywhere.
- * Primality: trial division by 2, 3 and then 6k +/- 1 up to sqrt(n)
- * (at most ~33000 divisions for n <= 10^10), well under a second.
+ *'p' -> tells whether n is prime
+ *'g' -> prints n = p + q with p <= q both prime, p as small as possible
+ * Numbers go up to 10^10
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,21 +9,19 @@
 
 #define MAX_N 10000000000LL
 
-/* Returns 1 if n is prime, 0 otherwise. */
+/* Returns 1 if n is prime */
 static int is_prime(long long n)
 {
     long long d;
 
     if (n < 2) return 0;
-    if (n < 4) return 1;              /* 2 and 3 */
+    if (n < 4) return 1;    
     if (n % 2 == 0 || n % 3 == 0) return 0;
     for (d = 5; d * d <= n; d += 6)
         if (n % d == 0 || n % (d + 2) == 0)
             return 0;
     return 1;
 }
-
-/* Smallest prime p such that n - p is also prime; 0 if none exists. */
 static long long goldbach_smallest(long long n)
 {
     long long p;
