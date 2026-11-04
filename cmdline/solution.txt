@@ -25,3 +25,4 @@ byte5: sdi2400290_1793725330_-845363100_79_167_135_162_58196_22
 byte6: unzip_whenever_you_feel_a_little_compressed
 byte7: tar_jokes_wont_stick
 byte8: there_s_more_than_what_meets_the_eye
+byte9: you_re_on_the_right_path
